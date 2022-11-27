@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="jumbotron">
+        <h1>Bienvenido a la calculadora de horas de trabajo de IAS HandyMan</h1>
+        <p>Para ingresar a nuestra API, haz clic en REST API.</p>
+        <div class="row">
+            <div class="col-md">
+                <a class="btn btn-success col-md-12" th:href="@{/api/docs/info.html}">Rest API</a>
+            </div>
+            <div class="col-md">
+                <a class="btn btn-primary col-md-12" href="https://www.ias.com.co/">Conocenos</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
