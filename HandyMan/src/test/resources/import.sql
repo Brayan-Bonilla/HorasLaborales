@@ -1,0 +1,3 @@
+INSERT INTO service_report(idTechnical, idService, startDate, endDate, week) VALUES ( 'prueba1', 'prueba1', '2022-05-16 05:00:00', '2022-05-20 10:00:00', 20);
+INSERT INTO service_report(idTechnical, idService, startDate, endDate, week) VALUES ( 'prueba1', 'prueba1', '2022-05-17 05:00:00', '2022-05-19 05:00:00', 20);
+INSERT INTO service_report(idTechnical, idService, startDate, endDate, week) VALUES ( 'prueba1', 'prueba1', '2022-05-22 05:00:00', '2022-05-22 17:00:00', 20);
