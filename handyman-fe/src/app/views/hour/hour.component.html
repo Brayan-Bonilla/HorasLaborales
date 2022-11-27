@@ -1,0 +1,42 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <h1>Registro Reporte de Servicio</h1>
+        <br>
+        <!-- Login Form -->
+        <form [formGroup]="reportService" (ngSubmit)="saveReport(reportService.value)">
+            <div class="row">
+                <div class="col">
+                    <label for="exampleInputEmail1">Identificación Técnico</label>
+                    <input type="text" id="idTechnical" class="fadeIn second" placeholder="Técnico"
+                        formControlName="idTechnical">
+                </div>
+                <div class="col">
+                    <label for="exampleInputEmail1">Identificación Servicio</label>
+                    <input type="text" id="idService" class="fadeIn second" placeholder="Servicio"
+                        formControlName="idService">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <label for="exampleInputEmail1">Fecha Inicio</label>
+                    <input type="datetime-local" formControlName="startDate" id="startDate" class="form-control"
+                        style="width: 80%; display:inline-block">
+                </div>
+                <div class="col">
+                    <label for="exampleInputEmail1">Fecha Fin</label>
+                    <input type="datetime-local" formControlName="endDate" id="endDate" class="form-control"
+                        style="width: 81%; display:inline-block">
+                </div>
+            </div>
+            <br>
+
+            <input type="submit" class="fadeIn fourth" value="Guardar">
+
+        </form>
+        <div>
+            <input type="submit" class="fadeIn fourth" value="Calculadora de horas >" style="float: right;" (click)="redirectPage()">
+        </div>
+    </div>
+</div>
