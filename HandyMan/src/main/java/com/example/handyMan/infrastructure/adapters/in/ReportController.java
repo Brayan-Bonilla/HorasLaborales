@@ -26,4 +26,12 @@ public class ReportController
         Report report1 = reportUseCase.saveReport(report);
         return (report1.getId() != null && report1.getId() > 0) ? new ResponseEntity<>(report1, HttpStatus.CREATED) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @GetMapping("/calculate/idTechnical/{idTechnical}/week/{week}")
+    @CrossOrigin(origins = "*")
+    public ResponseEntity<WeekCalculatorDTO> weekCalculator(@PathVariable String idTechnical, @PathVariable int week)
+    {
+        WeekCalculatorDTO weekCalculatorDTO = weekCalculatorUseCase.weekCalculator(idTechnical, week);
+        return new ResponseEntity<>(weekCalculatorDTO, HttpStatus.OK);
+    }
 }

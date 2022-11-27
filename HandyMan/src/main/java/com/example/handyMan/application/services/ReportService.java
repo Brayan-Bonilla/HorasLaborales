@@ -27,7 +27,6 @@ public class ReportService implements ReportUseCase
         {
             Report report = reportDomainMapper.toDomain(reportInDTO);
             ReportValidation.validation(report);
-            //return validationWeek(report);
             return null;
         }
         return new Report();
@@ -43,5 +42,60 @@ public class ReportService implements ReportUseCase
         calendar.setMinimalDaysInFirstWeek(4);
         calendar.setTime(date);
         return calendar.get(Calendar.WEEK_OF_YEAR);
+    }
+
+    /*
+        Se encarga de validar el rango de fechas que se va a almacenar
+     */
+    private Report validationWeek(Report report)
+    {
+        int week1 = weekYear(report.getStartDate());
+        int week2 = weekYear(report.getEndDate());
+        Date dateStart = report.getStartDate();
+        Date dateEnd = report.getEndDate();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setFirstDayOfWeek(Calendar.MONDAY);
+        calendar.setMinimalDaysInFirstWeek(4);
+        if (week1 != week2)
+        {
+            calendar.setTime(dateStart);
+            int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+            report.setStartDate(dateStart);
+            if (dayOfWeek == 1)
+            {
+                report.setEndDate(conditionalsDate(calendar, 0, 23, 59, 59));
+            } else
+            {
+                report.setEndDate(conditionalsDate(calendar, (8 - dayOfWeek), 23, 59, 59));
+            }
+            report.setWeek(week1);
+            reportRepository.saveReport(report);
+            week1++;
+            while (week1 != week2)
+            {
+                report.setStartDate(conditionalsDate(calendar, 1, 0, 0, 0));
+                report.setEndDate(conditionalsDate(calendar, 6, 23, 59, 59));
+                report.setWeek(week1);
+                reportRepository.saveReport(report);
+                week1++;
+            }
+            report.setStartDate(conditionalsDate(calendar, 1, 0, 0, 0));
+            report.setEndDate(dateEnd);
+        }
+        report.setWeek(week1);
+        report = reportRepository.saveReport(report);
+        return report;
+    }
+
+    /*
+       Se encarga de establecer un horario especifico
+    */
+    private Date conditionalsDate(Calendar calendar, int day, int hour, int minute, int second)
+    {
+        calendar.add(Calendar.DAY_OF_YEAR, day);
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+        calendar.set(Calendar.SECOND, second);
+        return calendar.getTime();
     }
 }
