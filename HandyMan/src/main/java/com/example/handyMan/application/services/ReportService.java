@@ -33,4 +33,15 @@ public class ReportService implements ReportUseCase
         return new Report();
     }
 
+    /*
+        Se encarga de devolver el numero de la semana del año
+     */
+    private int weekYear(Date date)
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setFirstDayOfWeek(Calendar.MONDAY);
+        calendar.setMinimalDaysInFirstWeek(4);
+        calendar.setTime(date);
+        return calendar.get(Calendar.WEEK_OF_YEAR);
+    }
 }

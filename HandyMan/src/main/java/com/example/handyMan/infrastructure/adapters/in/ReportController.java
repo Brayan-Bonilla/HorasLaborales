@@ -19,5 +19,11 @@ public class ReportController
     @Autowired
     private WeekCalculatorUseCase weekCalculatorUseCase;
 
-
+    @PostMapping("/saveReport")
+    @CrossOrigin(origins = "*")
+    public ResponseEntity<Report> saveReport(@RequestBody ReportInDTO report)
+    {
+        Report report1 = reportUseCase.saveReport(report);
+        return (report1.getId() != null && report1.getId() > 0) ? new ResponseEntity<>(report1, HttpStatus.CREATED) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
