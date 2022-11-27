@@ -1,0 +1,58 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        
+        
+        <div >
+            <h1>Calculadora de horas</h1>
+        </div>
+        
+        <br>
+        <!-- Login Form -->
+        <form [formGroup]="reportService" (ngSubmit)="weekCalculator(reportService.value)">
+            <div class="row">
+                <div class="col">
+                    <label for="exampleInputEmail1">Identificación Técnico</label>
+                    <input type="text" id="idTechnical" class="fadeIn second" placeholder="Técnico"
+                        formControlName="idTechnical">
+                </div>
+                <div class="col">
+                    <label for="exampleInputEmail1">Número de la semana</label>
+                    <input type="text" id="idService" class="fadeIn second" placeholder="Semana"
+                        formControlName="week">
+                </div>
+            </div>
+            <br>
+            <br>
+
+            <input type="submit" class="fadeIn fourth" value="Consultar">
+            
+
+        </form>
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Horas normales</th>
+                <th scope="col">Horas normales extras</th>
+                <th scope="col">Horas nocturnas</th>
+                <th scope="col">Horas nocturnas extras</th>
+                <th scope="col">Horas dominicales</th>
+                <th scope="col">Horas dominicales extras</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{calculatorHourR.hoursNm}}</td>
+                <td>{{calculatorHourR.hoursNmE}}</td>
+                <td>{{calculatorHourR.hoursNc}}</td>
+                <td>{{calculatorHourR.hoursNcE}}</td>
+                <td>{{calculatorHourR.hoursD}}</td>
+                <td>{{calculatorHourR.hoursDe}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <input type="submit" class="fadeIn fourth" value="< Registro Reporte de servicio" style="float: left;" (click)="redirectPage()">
+        </div>
+    </div>
+</div>
